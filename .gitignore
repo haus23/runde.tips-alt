@@ -1,2 +1,5 @@
+# Build output
+dist/
+
 # NPM deps
 node_modules/
