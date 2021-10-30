@@ -1,8 +1,18 @@
-// Import styles
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// Styles
 import './styles.css';
 
-const rootElt = document.createElement('h1');
-rootElt.textContent = 'runde.tips';
-rootElt.classList.add('text-3xl', 'font-semibold', 'p-2');
+// App
+import App from './App';
 
-document.getElementById('root').appendChild(rootElt);
+// React root
+const container = document.getElementById('app');
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  container
+);
