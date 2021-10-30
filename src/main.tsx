@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import './styles.css';
 
 // App
-import { App } from './App';
+import { App } from '~/App';
 
 // React root
 const container = document.getElementById('app');
