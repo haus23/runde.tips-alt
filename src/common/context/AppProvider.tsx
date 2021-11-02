@@ -1,6 +1,10 @@
-import { FC } from 'react';
+import { ReactNode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-export const AppProvider: FC = ({ children }) => {
-  return <BrowserRouter>{children}</BrowserRouter>;
+type AppProviderProps = {
+  children: ReactNode;
 };
+
+export default function AppProvider({ children }: AppProviderProps) {
+  return <BrowserRouter>{children}</BrowserRouter>;
+}

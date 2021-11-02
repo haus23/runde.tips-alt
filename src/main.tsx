@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom';
 import './styles.css';
 
 // App
-import { App } from '~/App';
-import { AppProvider } from '~/common/context';
+import App from '~/App';
+import AppProvider from './common/context';
 
 // React root
 const container = document.getElementById('app');
