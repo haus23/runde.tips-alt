@@ -3,19 +3,14 @@ import {
   ClipboardListIcon,
   HomeIcon,
   MenuIcon,
-  MoonIcon,
-  SunIcon,
   XIcon,
 } from '@heroicons/react/outline';
 import { Fragment, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { AppNavButton, Logo } from '~/common/components';
+import { AppNavButton, Logo, ThemeToggler } from '~/common/components';
 import BackyardNavLink from './components/BackyardNavLink';
-import useDarkMode from '~/common/hooks/dark-mode';
 
 export default function Layout() {
-  const { darkMode, toggleMode } = useDarkMode();
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const openSidebar = () => {
     setSidebarOpen(true);
@@ -141,13 +136,7 @@ export default function Layout() {
                 sidebarOpen ? 'opacity-0' : 'opacity-100'
               }`}
             >
-              <AppNavButton onClick={toggleMode}>
-                {darkMode ? (
-                  <SunIcon className="h-6 w-6 text-yellow-300" />
-                ) : (
-                  <MoonIcon className="h-6 w-6" />
-                )}
-              </AppNavButton>
+              <ThemeToggler />
             </div>
           </div>
         </div>
