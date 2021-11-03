@@ -103,7 +103,11 @@ export default function Layout() {
             <div className="flex-1 flex items-center">
               <h2 className="text-xl">Aktuelles Turnier</h2>
             </div>
-            <div className="ml-4 flex items-center md:ml-6">
+            <div
+              className={`ml-4 flex items-center md:ml-6 transition-opacity ${
+                sidebarOpen ? 'opacity-0' : 'opacity-100'
+              }`}
+            >
               <AppNavButton onClick={toggleMode}>
                 {darkMode ? (
                   <SunIcon className="h-6 w-6 text-yellow-300" />
