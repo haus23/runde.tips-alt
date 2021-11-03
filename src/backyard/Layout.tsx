@@ -1,13 +1,28 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { MenuIcon, MoonIcon, SunIcon, XIcon } from '@heroicons/react/outline';
+import {
+  ClipboardListIcon,
+  HomeIcon,
+  MenuIcon,
+  MoonIcon,
+  SunIcon,
+  XIcon,
+} from '@heroicons/react/outline';
 import { Fragment, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AppNavButton, Logo } from '~/common/components';
+import BackyardNavLink from './components/BackyardNavLink';
 import useDarkMode from '~/common/hooks/dark-mode';
 
 export default function Layout() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const { darkMode, toggleMode } = useDarkMode();
+
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const openSidebar = () => {
+    setSidebarOpen(true);
+  };
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+  };
 
   return (
     <div>
@@ -15,7 +30,7 @@ export default function Layout() {
         <Dialog
           as="div"
           className="fixed inset-0 flex z-40 md:hidden"
-          onClose={setSidebarOpen}
+          onClose={closeSidebar}
         >
           <Transition.Child
             as={Fragment}
@@ -51,7 +66,7 @@ export default function Layout() {
                   <button
                     type="button"
                     className="ml-1 flex items-center justify-center h-10 w-10 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                    onClick={() => setSidebarOpen(false)}
+                    onClick={closeSidebar}
                   >
                     <XIcon className="h-6 w-6 text-white" />
                   </button>
@@ -65,7 +80,20 @@ export default function Layout() {
               </div>
               <div className="mt-5 flex-1 h-0 overflow-y-auto">
                 <nav className="px-2 space-y-1">
-                  <Link to="/hinterhof">Dashboard</Link>
+                  <BackyardNavLink
+                    to="."
+                    icon={HomeIcon}
+                    onClick={closeSidebar}
+                  >
+                    Dashboard
+                  </BackyardNavLink>
+                  <BackyardNavLink
+                    to="./turniere"
+                    icon={ClipboardListIcon}
+                    onClick={closeSidebar}
+                  >
+                    Turniere
+                  </BackyardNavLink>
                 </nav>
               </div>
             </div>
@@ -87,7 +115,12 @@ export default function Layout() {
           </div>
           <div className="mt-5 flex-grow flex flex-col">
             <nav className="flex-1 px-2 pb-4 space-y-1">
-              <Link to="/hinterhof">Dashboard</Link>
+              <BackyardNavLink to="." icon={HomeIcon}>
+                Dashboard
+              </BackyardNavLink>
+              <BackyardNavLink to="./turniere" icon={ClipboardListIcon}>
+                Turniere
+              </BackyardNavLink>
             </nav>
           </div>
         </div>
@@ -95,7 +128,7 @@ export default function Layout() {
       <div className="md:pl-64 flex flex-col flex-1">
         <div className="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white dark:bg-gray-800 shadow">
           <div className="md:hidden flex items-center border-r border-gray-200 dark:border-gray-700 px-2">
-            <AppNavButton onClick={() => setSidebarOpen(true)}>
+            <AppNavButton onClick={openSidebar}>
               <MenuIcon className="h-6 w-6" />
             </AppNavButton>
           </div>
