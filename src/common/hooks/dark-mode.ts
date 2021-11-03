@@ -1,6 +1,6 @@
 import { atom, useRecoilState } from 'recoil';
 
-const setColorScheme = (scheme: string, updateStorage = true) => {
+const setColorTheme = (scheme: string, updateStorage = true) => {
   // set document class
   if (scheme === 'dark') {
     document.documentElement.classList.add('dark');
@@ -8,15 +8,15 @@ const setColorScheme = (scheme: string, updateStorage = true) => {
     document.documentElement.classList.remove('dark');
   }
   if (updateStorage) {
-    localStorage.setItem('colorScheme', scheme);
+    localStorage.setItem('colorTheme', scheme);
   }
 };
 
 const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-const themeSettings = localStorage.colorScheme;
+const themeSettings = localStorage.colorTheme;
 
 const darkModeEnabled = themeSettings !== 'light' && darkModeQuery.matches;
-setColorScheme(darkModeEnabled ? 'dark' : 'light', false);
+setColorTheme(darkModeEnabled ? 'dark' : 'light', false);
 
 const darkModeState = atom({
   key: 'darkMode',
@@ -27,7 +27,7 @@ const useDarkMode = () => {
   const [darkMode, setDarkMode] = useRecoilState(darkModeState);
 
   const toggleMode = () => {
-    setColorScheme(darkMode ? 'light' : 'dark');
+    setColorTheme(darkMode ? 'light' : 'dark');
     setDarkMode(!darkMode);
   };
 
