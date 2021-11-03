@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'jit',
   purge: ['./index.html', './src/**/*.{ts,tsx}'],
-  darkMode: "class",
+  darkMode: 'class',
   theme: {
     extend: {},
   },
@@ -9,4 +9,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
+};

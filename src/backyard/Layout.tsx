@@ -1,35 +1,127 @@
+import { Dialog, Transition } from '@headlessui/react';
+import { MenuIcon, MoonIcon, SunIcon, XIcon } from '@heroicons/react/outline';
+import { Fragment, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { Logo } from '~/common/components';
+import { AppNavButton, Logo } from '~/common/components';
+import useDarkMode from '~/common/hooks/dark-mode';
 
 export default function Layout() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { darkMode, toggleMode } = useDarkMode();
+
   return (
-    <>
-      <header className="flex items-center h-16 px-4 gap-4 border-b">
-        <div>
-          <Link to="/" className="flex items-center">
-            <Logo />
-            <h1 className="ml-2 text-2xl font-semibold">runde.tips</h1>
-          </Link>
+    <div>
+      <Transition.Root show={sidebarOpen} as={Fragment}>
+        <Dialog
+          as="div"
+          className="fixed inset-0 flex z-40 md:hidden"
+          onClose={setSidebarOpen}
+        >
+          <Transition.Child
+            as={Fragment}
+            enter="transition-opacity ease-linear duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="transition-opacity ease-linear duration-300"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <Dialog.Overlay className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+          </Transition.Child>
+          <Transition.Child
+            as={Fragment}
+            enter="transition ease-in-out duration-300 transform"
+            enterFrom="-translate-x-full"
+            enterTo="translate-x-0"
+            leave="transition ease-in-out duration-300 transform"
+            leaveFrom="translate-x-0"
+            leaveTo="-translate-x-full"
+          >
+            <div className="relative flex-1 flex flex-col max-w-xs w-full pb-4 bg-white dark:bg-gray-800">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-in-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in-out duration-300"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <div className="absolute top-0 right-0 -mr-12 pt-2">
+                  <button
+                    type="button"
+                    className="ml-1 flex items-center justify-center h-10 w-10 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    <XIcon className="h-6 w-6 text-white" />
+                  </button>
+                </div>
+              </Transition.Child>
+              <div className="flex-shrink-0 flex items-center px-4 h-16">
+                <Link to="/" className="flex items-center">
+                  <Logo />
+                  <span className="text-xl ml-2">runde.tips</span>
+                </Link>
+              </div>
+              <div className="mt-5 flex-1 h-0 overflow-y-auto">
+                <nav className="px-2 space-y-1">
+                  <Link to="/hinterhof">Dashboard</Link>
+                </nav>
+              </div>
+            </div>
+          </Transition.Child>
+          <div className="flex-shrink-0 w-14" aria-hidden="true">
+            {/* Dummy element to force sidebar to shrink to fit close icon */}
+          </div>
+        </Dialog>
+      </Transition.Root>
+
+      {/* Static content */}
+      <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
+        <div className="flex flex-col flex-grow border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 overflow-y-auto">
+          <div className="flex items-center flex-shrink-0 px-4 h-16 ">
+            <Link to="/" className="flex items-center">
+              <Logo />
+              <span className="text-xl ml-2">runde.tips</span>
+            </Link>
+          </div>
+          <div className="mt-5 flex-grow flex flex-col">
+            <nav className="flex-1 px-2 pb-4 space-y-1">
+              <Link to="/hinterhof">Dashboard</Link>
+            </nav>
+          </div>
         </div>
-        <nav className="flex flex-1 justify-between">
-          <ul className="flex gap-4">
-            <li>
-              <Link to=".">Dashboard</Link>
-            </li>
-            <li>
-              <Link to="./turniere">Turniere</Link>
-            </li>
-          </ul>
-          <ul className="flex gap-4">
-            <li>
-              <Link to="/">Log Out</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <div className="p-4">
-        <Outlet />
       </div>
-    </>
+      <div className="md:pl-64 flex flex-col flex-1">
+        <div className="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white dark:bg-gray-800 shadow">
+          <div className="md:hidden flex items-center border-r border-gray-200 dark:border-gray-700 px-2">
+            <AppNavButton onClick={() => setSidebarOpen(true)}>
+              <MenuIcon className="h-6 w-6" />
+            </AppNavButton>
+          </div>
+          <div className="flex-1 px-4 flex justify-between">
+            <div className="flex-1 flex items-center">
+              <h2 className="text-xl">Aktuelles Turnier</h2>
+            </div>
+            <div className="ml-4 flex items-center md:ml-6">
+              <AppNavButton onClick={toggleMode}>
+                {darkMode ? (
+                  <SunIcon className="h-6 w-6 text-yellow-300" />
+                ) : (
+                  <MoonIcon className="h-6 w-6" />
+                )}
+              </AppNavButton>
+            </div>
+          </div>
+        </div>
+        <main className="flex-1 text-gray-900 dark:text-gray-100">
+          <div className="py-6">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+              <Outlet />
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
   );
 }
