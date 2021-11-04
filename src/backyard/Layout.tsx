@@ -70,10 +70,10 @@ export default function Layout() {
               <div className="flex-shrink-0 flex items-center px-4 h-16">
                 <Link to="/" className="flex items-center">
                   <Logo />
-                  <span className="text-xl ml-2">runde.tips</span>
+                  <span className="text-xl ml-2 font-semibold">runde.tips</span>
                 </Link>
               </div>
-              <div className="mt-5 flex-1 h-0 overflow-y-auto">
+              <div className="mt-2 flex-1 h-0 overflow-y-auto">
                 <nav className="px-2 space-y-1">
                   <BackyardNavLink
                     to="."
@@ -105,10 +105,10 @@ export default function Layout() {
           <div className="flex items-center flex-shrink-0 px-4 h-16 ">
             <Link to="/" className="flex items-center">
               <Logo />
-              <span className="text-xl ml-2">runde.tips</span>
+              <span className="text-xl ml-2 font-semibold">runde.tips</span>
             </Link>
           </div>
-          <div className="mt-5 flex-grow flex flex-col">
+          <div className="mt-2 flex-grow flex flex-col">
             <nav className="flex-1 px-2 pb-4 space-y-1">
               <BackyardNavLink to="." icon={HomeIcon}>
                 Dashboard
