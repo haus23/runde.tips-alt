@@ -1,7 +1,7 @@
-import { Disclosure, Transition } from '@headlessui/react';
-import { MenuIcon, XIcon } from '@heroicons/react/outline';
-import { MouseEvent } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { MenuIcon, UserIcon, XIcon } from '@heroicons/react/outline';
+import { Fragment, MouseEvent } from 'react';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import { AppNavButton, Logo, ThemeToggler } from '~/common/components';
 import { SidenavLink, TopnavLink } from './components';
 
@@ -36,9 +36,37 @@ export default function Layout() {
                     <div className="ml-6 flex items-center">
                       <ThemeToggler />
                     </div>
-                    <div className="hidden sm:-my-px sm:flex sm:items-stretch">
-                      <TopnavLink to="/login">Log In</TopnavLink>
+                    <div className="hidden sm:flex items-center">
+                      {/* Profile dropdown */}
+                      <Menu as="div" className="relative">
+                        <div>
+                          <Menu.Button as={AppNavButton}>
+                            <UserIcon className="h-6 w-6" />
+                          </Menu.Button>
+                        </div>
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-200"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items className="origin-top-right absolute right-0 mt-2 -mr-12 w-48 sm:mr-0 rounded-md shadow-lg py-1 bg-white dark:bg-gray-800 ring-2 ring-black dark:ring-white ring-opacity-5 focus:outline-none">
+                            <Menu.Item>
+                              <NavLink
+                                to="/login"
+                                className="block px-4 py-2 text-sm text-gray-700 dark:text-white"
+                              >
+                                Login
+                              </NavLink>
+                            </Menu.Item>
+                          </Menu.Items>
+                        </Transition>
+                      </Menu>
                     </div>
+
                     <div className="-mr-2 flex items-center sm:hidden">
                       <Disclosure.Button as={AppNavButton}>
                         <MenuIcon className="block h-6 w-6" />
@@ -50,7 +78,7 @@ export default function Layout() {
 
               <Transition
                 onClick={() => close()}
-                className="fixed inset-0 p-2 transition transform origin-top-right bg-gray-200 dark:bg-gray-800 bg-opacity-75 dark:bg-opacity-75"
+                className="sm:hidden fixed inset-0 p-2 transition transform origin-top-right bg-gray-200 dark:bg-gray-800 bg-opacity-75 dark:bg-opacity-75"
                 enter="duration-150 ease-out"
                 enterFrom="opacity-0 scale-95"
                 enterTo="opacity-100 scale-100"
