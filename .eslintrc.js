@@ -5,7 +5,10 @@ module.exports = {
     node: true,
   },
   extends: [
+    'eslint:recommended',
     'plugin:react/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
     'airbnb',
     'plugin:react/jsx-runtime',
     'plugin:prettier/recommended',
@@ -29,7 +32,6 @@ module.exports = {
       },
     ],
     'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
-    'react/require-default-props': [0],
   },
   settings: {
     'import/resolver': {

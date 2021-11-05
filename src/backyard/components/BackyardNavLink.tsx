@@ -6,14 +6,14 @@ type BackyardNavLinkProps = {
   children: ReactNode;
   to: string;
   icon: ElementType;
-  onClick?: () => void;
+  onClick: () => void;
 };
 
 export default function BackyardNavLink({
   children,
   to,
   icon,
-  onClick = () => {},
+  onClick,
 }: BackyardNavLinkProps) {
   const Icon = icon;
   const match = useMatch(to);

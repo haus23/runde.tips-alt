@@ -4,11 +4,11 @@ import { AppNavLink } from '~/common/components';
 type SidenavLinkProps = {
   children: ReactNode;
   to: string;
-  onClick?: () => void;
+  onClick: () => void;
 };
 
 const SidenavLink = forwardRef<HTMLAnchorElement, SidenavLinkProps>(
-  ({ children, to, onClick = () => {} }: SidenavLinkProps, ref) => (
+  ({ children, to, onClick }: SidenavLinkProps, ref) => (
     <AppNavLink
       ref={ref}
       to={to}
