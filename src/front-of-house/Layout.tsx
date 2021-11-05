@@ -3,9 +3,19 @@ import { MenuIcon, UserIcon, XIcon } from '@heroicons/react/outline';
 import { Fragment, MouseEvent } from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { AppNavButton, Logo, ThemeToggler } from '~/common/components';
+import { useAuth } from '~/common/hooks';
 import { SidenavLink, TopnavLink } from './components';
 
+const user = {
+  name: 'Tom Cook',
+  email: 'tom@example.com',
+  imageUrl:
+    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+};
+
 export default function Layout() {
+  const { authenticated } = useAuth();
+
   return (
     <>
       <div className="min-h-full bg-white dark:text-white dark:bg-gray-700">
@@ -54,14 +64,32 @@ export default function Layout() {
                           leaveTo="transform opacity-0 scale-95"
                         >
                           <Menu.Items className="origin-top-right absolute right-0 mt-2 -mr-12 w-48 sm:mr-0 rounded-md shadow-lg py-1 bg-white dark:bg-gray-800 ring-2 ring-black dark:ring-white ring-opacity-5 focus:outline-none">
-                            <Menu.Item>
-                              <NavLink
+                            {authenticated ? (
+                              <>
+                                <Menu.Item
+                                  as={NavLink}
+                                  to="/hinterhof"
+                                  className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100  hover:text-gray-800 dark:hover:bg-gray-700 dark:hover:text-white"
+                                >
+                                  Hinterhof
+                                </Menu.Item>
+                                <Menu.Item
+                                  as={NavLink}
+                                  to="/logout"
+                                  className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100  hover:text-gray-800 dark:hover:bg-gray-700 dark:hover:text-white"
+                                >
+                                  Log Out
+                                </Menu.Item>
+                              </>
+                            ) : (
+                              <Menu.Item
+                                as={NavLink}
                                 to="/login"
                                 className="block px-4 py-2 text-sm text-gray-700 dark:text-white"
                               >
                                 Login
-                              </NavLink>
-                            </Menu.Item>
+                              </Menu.Item>
+                            )}
                           </Menu.Items>
                         </Transition>
                       </Menu>
@@ -93,12 +121,14 @@ export default function Layout() {
                   className="sm:hidden rounded-lg shadow-md bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 overflow-hidden"
                 >
                   <div className="px-2 pt-2 flex items-center justify-between">
-                    <Logo />
+                    <Disclosure.Button as={NavLink} to="/">
+                      <Logo />
+                    </Disclosure.Button>
                     <Disclosure.Button as={AppNavButton}>
                       <XIcon className="block h-6 w-6" />
                     </Disclosure.Button>
                   </div>
-                  <div className="pt-2 space-y-1 dark:px-2 dark:py-3">
+                  <div className="pt-2 mt-2 space-y-1 dark:px-2 dark:py-3 border-t border-gray-200 dark:border-gray-500">
                     <Disclosure.Button as={SidenavLink} to="/">
                       Tabelle
                     </Disclosure.Button>
@@ -109,15 +139,45 @@ export default function Layout() {
                       Spiele
                     </Disclosure.Button>
                   </div>
-                  <div>
-                    <Disclosure.Button
-                      as={Link}
-                      to="/login"
-                      className="block w-full px-5 py-3 text-center font-medium text-indigo-500 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
-                    >
-                      Log in
-                    </Disclosure.Button>
-                  </div>
+                  {authenticated ? (
+                    <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-500">
+                      <div className="flex items-center px-4">
+                        <div className="flex-shrink-0">
+                          <img
+                            className="h-10 w-10 rounded-full"
+                            src={user.imageUrl}
+                            alt=""
+                          />
+                        </div>
+                        <div className="ml-3">
+                          <div className="text-base font-medium text-gray-800 dark:text-gray-50">
+                            {user.name}
+                          </div>
+                          <div className="text-sm font-medium text-gray-500">
+                            {user.email}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-3 space-y-1 dark:px-2">
+                        <Disclosure.Button as={SidenavLink} to="/hinterhof">
+                          Hinterhof
+                        </Disclosure.Button>
+                        <Disclosure.Button as={SidenavLink} to="/logout">
+                          Log Out
+                        </Disclosure.Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div>
+                      <Disclosure.Button
+                        as={Link}
+                        to="/login"
+                        className="block w-full px-5 py-3 text-center font-medium text-indigo-500 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      >
+                        Log in
+                      </Disclosure.Button>
+                    </div>
+                  )}
                 </Disclosure.Panel>
               </Transition>
             </>

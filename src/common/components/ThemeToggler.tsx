@@ -1,5 +1,5 @@
 import { SunIcon, MoonIcon } from '@heroicons/react/outline';
-import useDarkMode from '~/common/hooks/dark-mode';
+import { useDarkMode } from '~/common/hooks';
 import AppNavButton from './AppNavButton';
 
 export default function ThemeToggler() {
