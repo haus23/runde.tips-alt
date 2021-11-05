@@ -29,7 +29,7 @@ module.exports = {
       },
     ],
     'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
-    'react/require-default-props': [2, { ignoreFunctionalComponents: true }],
+    'react/require-default-props': [0],
   },
   settings: {
     'import/resolver': {

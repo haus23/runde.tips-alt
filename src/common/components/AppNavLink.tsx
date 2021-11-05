@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { NavLink, NavLinkProps } from 'react-router-dom';
 
 export interface AppNavLinkProps extends NavLinkProps {
@@ -5,16 +6,20 @@ export interface AppNavLinkProps extends NavLinkProps {
   inactiveClass: string;
 }
 
-export function AppNavLink({
-  to,
-  children,
-  activeClass,
-  inactiveClass,
-  className,
-  onClick,
-}: AppNavLinkProps) {
-  return (
+export const AppNavLink = forwardRef<HTMLAnchorElement, AppNavLinkProps>(
+  (
+    {
+      to,
+      children,
+      activeClass,
+      inactiveClass,
+      className,
+      onClick,
+    }: AppNavLinkProps,
+    ref
+  ) => (
     <NavLink
+      ref={ref}
       onClick={onClick}
       end
       to={to}
@@ -26,5 +31,5 @@ export function AppNavLink({
     >
       {children}
     </NavLink>
-  );
-}
+  )
+);

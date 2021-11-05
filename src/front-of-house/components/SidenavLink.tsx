@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { forwardRef, ReactNode } from 'react';
 import { AppNavLink } from '~/common/components';
 
 type SidenavLinkProps = {
@@ -7,13 +7,10 @@ type SidenavLinkProps = {
   onClick?: () => void;
 };
 
-export default function SidenavLink({
-  children,
-  to,
-  onClick = () => {},
-}: SidenavLinkProps) {
-  return (
+const SidenavLink = forwardRef<HTMLAnchorElement, SidenavLinkProps>(
+  ({ children, to, onClick = () => {} }: SidenavLinkProps, ref) => (
     <AppNavLink
+      ref={ref}
       to={to}
       onClick={onClick}
       className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium dark:px-3 dark:border-l-0 dark:rounded-md"
@@ -22,5 +19,7 @@ export default function SidenavLink({
     >
       {children}
     </AppNavLink>
-  );
-}
+  )
+);
+
+export default SidenavLink;
