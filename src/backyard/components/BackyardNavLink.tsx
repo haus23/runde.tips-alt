@@ -21,7 +21,7 @@ export default function BackyardNavLink({
     <AppNavLink
       to={to}
       className="group flex items-center px-2 py-2 text-base font-medium rounded-md"
-      activeClass="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
+      activeClass="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
       inactiveClass="text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
       onClick={onClick}
     >

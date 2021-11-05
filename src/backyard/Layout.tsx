@@ -20,7 +20,7 @@ export default function Layout() {
   };
 
   return (
-    <div>
+    <div className="h-full bg-gray-50 dark:bg-gray-700 dark:text-white">
       <Transition.Root show={sidebarOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -47,7 +47,7 @@ export default function Layout() {
             leaveFrom="translate-x-0"
             leaveTo="-translate-x-full"
           >
-            <div className="relative flex-1 flex flex-col max-w-xs w-full pb-4 bg-white dark:bg-gray-800">
+            <div className="relative flex-1 flex flex-col max-w-xs w-full pb-4 bg-white dark:text-white dark:bg-gray-900">
               <Transition.Child
                 as={Fragment}
                 enter="ease-in-out duration-300"
@@ -101,7 +101,7 @@ export default function Layout() {
 
       {/* Static content */}
       <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
-        <div className="flex flex-col flex-grow border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 overflow-y-auto">
+        <div className="flex flex-col flex-grow border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 overflow-y-auto">
           <div className="flex items-center flex-shrink-0 px-4 h-16 ">
             <Link to="/" className="flex items-center">
               <Logo />
@@ -121,7 +121,7 @@ export default function Layout() {
         </div>
       </div>
       <div className="md:pl-64 flex flex-col flex-1">
-        <div className="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white dark:bg-gray-800 shadow">
+        <div className="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white dark:bg-gray-900 shadow">
           <div className="md:hidden flex items-center border-r border-gray-200 dark:border-gray-700 px-2">
             <AppNavButton onClick={openSidebar}>
               <MenuIcon className="h-6 w-6" />

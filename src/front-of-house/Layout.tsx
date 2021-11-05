@@ -8,7 +8,7 @@ import { SidenavLink, TopnavLink } from './components';
 export default function Layout() {
   return (
     <>
-      <div className="min-h-full bg-white dark:bg-gray-800">
+      <div className="min-h-full bg-white dark:text-white dark:bg-gray-700">
         <Disclosure
           as="nav"
           className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700"
@@ -70,7 +70,7 @@ export default function Layout() {
                       <XIcon className="block h-6 w-6" />
                     </Disclosure.Button>
                   </div>
-                  <div className="pt-2 space-y-1">
+                  <div className="pt-2 space-y-1 dark:px-2 dark:py-3">
                     <Disclosure.Button as={SidenavLink} to="/">
                       Tabelle
                     </Disclosure.Button>
@@ -80,10 +80,12 @@ export default function Layout() {
                     <Disclosure.Button as={SidenavLink} to="/spiele">
                       Spiele
                     </Disclosure.Button>
+                  </div>
+                  <div>
                     <Disclosure.Button
                       as={Link}
                       to="/login"
-                      className="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      className="block w-full px-5 py-3 text-center font-medium text-indigo-500 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
                     >
                       Log in
                     </Disclosure.Button>
