@@ -1,24 +1,22 @@
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MenuIcon, UserIcon, XIcon } from '@heroicons/react/outline';
-import { Fragment, MouseEvent } from 'react';
+import { Fragment, MouseEvent, useRef } from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { AppNavButton, Logo, ThemeToggler } from '~/common/components';
 import { useAuth } from '~/common/hooks';
 import { SidenavLink, TopnavLink } from './components';
 
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-};
-
 export default function Layout() {
-  const { authenticated } = useAuth();
+  const { authenticated, user, logOut } = useAuth();
+
+  const handleLogOut = (event: { preventDefault: Function }) => {
+    event.preventDefault();
+    logOut();
+  };
 
   return (
     <>
-      <div className="min-h-full bg-white dark:text-white dark:bg-gray-700">
+      <div className="min-h-full bg-gray-50 dark:text-white dark:bg-gray-700">
         <Disclosure
           as="nav"
           className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700"
@@ -51,7 +49,15 @@ export default function Layout() {
                       <Menu as="div" className="relative">
                         <div>
                           <Menu.Button as={AppNavButton}>
-                            <UserIcon className="h-6 w-6" />
+                            {user !== null && user.imageUrl ? (
+                              <img
+                                className="h-6 w-6 rounded-full"
+                                src={user.imageUrl}
+                                alt="..."
+                              />
+                            ) : (
+                              <UserIcon className="h-6 w-6" />
+                            )}
                           </Menu.Button>
                         </div>
                         <Transition
@@ -75,10 +81,18 @@ export default function Layout() {
                                 </Menu.Item>
                                 <Menu.Item
                                   as={NavLink}
-                                  to="/logout"
+                                  to="/einstellungen"
                                   className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100  hover:text-gray-800 dark:hover:bg-gray-700 dark:hover:text-white"
                                 >
-                                  Log Out
+                                  Einstellungen
+                                </Menu.Item>
+                                <Menu.Item
+                                  as={NavLink}
+                                  to="/logout"
+                                  onClick={handleLogOut}
+                                  className="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100  hover:text-gray-800 dark:hover:bg-gray-700 dark:hover:text-white"
+                                >
+                                  Log out
                                 </Menu.Item>
                               </>
                             ) : (
@@ -87,7 +101,7 @@ export default function Layout() {
                                 to="/login"
                                 className="block px-4 py-2 text-sm text-gray-700 dark:text-white"
                               >
-                                Login
+                                Log in
                               </Menu.Item>
                             )}
                           </Menu.Items>
@@ -139,32 +153,47 @@ export default function Layout() {
                       Spiele
                     </Disclosure.Button>
                   </div>
-                  {authenticated ? (
+                  {authenticated && user !== null ? (
                     <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-500">
                       <div className="flex items-center px-4">
                         <div className="flex-shrink-0">
-                          <img
-                            className="h-10 w-10 rounded-full"
-                            src={user.imageUrl}
-                            alt=""
-                          />
+                          {user.imageUrl !== '' ? (
+                            <img
+                              className="h-8 w-8 rounded-full"
+                              src={user.imageUrl}
+                              alt=""
+                            />
+                          ) : (
+                            <UserIcon className="h-8 w-8 text-gray-500" />
+                          )}
                         </div>
                         <div className="ml-3">
                           <div className="text-base font-medium text-gray-800 dark:text-gray-50">
-                            {user.name}
+                            {user.name || user.email}
                           </div>
-                          <div className="text-sm font-medium text-gray-500">
-                            {user.email}
-                          </div>
+                          {user.name !== null && (
+                            <div className="text-sm font-medium text-gray-500">
+                              {user.email}
+                            </div>
+                          )}
                         </div>
                       </div>
                       <div className="mt-3 space-y-1 dark:px-2">
                         <Disclosure.Button as={SidenavLink} to="/hinterhof">
                           Hinterhof
                         </Disclosure.Button>
-                        <Disclosure.Button as={SidenavLink} to="/logout">
-                          Log Out
+                        <Disclosure.Button as={SidenavLink} to="/einstellungen">
+                          Einstellungen
                         </Disclosure.Button>
+                        <SidenavLink
+                          onClick={(event) => {
+                            close();
+                            handleLogOut(event);
+                          }}
+                          to="/logout"
+                        >
+                          Log out
+                        </SidenavLink>
                       </div>
                     </div>
                   ) : (

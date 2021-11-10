@@ -9,20 +9,18 @@ export interface AppNavLinkProps extends NavLinkProps {
 export const AppNavLink = forwardRef<HTMLAnchorElement, AppNavLinkProps>(
   (
     {
-      to,
       children,
       activeClass,
       inactiveClass,
       className,
-      onClick,
+      ...props
     }: AppNavLinkProps,
     ref
   ) => (
     <NavLink
       ref={ref}
-      onClick={onClick}
       end
-      to={to}
+      {...props}
       className={({ isActive }) =>
         isActive
           ? `${className} ${activeClass}`

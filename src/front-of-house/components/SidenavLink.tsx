@@ -1,10 +1,10 @@
-import { forwardRef, ReactNode } from 'react';
+import { forwardRef, MouseEvent, ReactNode } from 'react';
 import { AppNavLink } from '~/common/components';
 
 type SidenavLinkProps = {
   children: ReactNode;
   to: string;
-  onClick: () => void;
+  onClick: (event: MouseEvent<HTMLAnchorElement>) => void;
 };
 
 const SidenavLink = forwardRef<HTMLAnchorElement, SidenavLinkProps>(
