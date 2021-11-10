@@ -6,7 +6,7 @@ type BackyardNavLinkProps = {
   children: ReactNode;
   to: string;
   icon: ElementType;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 export default function BackyardNavLink({
