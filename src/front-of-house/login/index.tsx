@@ -1,14 +1,18 @@
 import { FormEvent, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { TextField } from '~/common/components/forms';
 import { useAuth } from '~/common/hooks';
 
 export default function LogIn() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { authenticated, logIn } = useAuth();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+
+  const from = location.state?.from?.pathname || '/';
 
   useEffect(() => {
     if (authenticated) {
@@ -20,7 +24,7 @@ export default function LogIn() {
     event.preventDefault();
     const resultOk = await logIn(email, password);
     if (resultOk) {
-      navigate('/');
+      navigate(from, { replace: true });
     } else {
       setPassword('');
       setErrorMsg('Email-Adresse und/oder Passwort nicht korrekt.');

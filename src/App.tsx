@@ -43,7 +43,14 @@ export default function App() {
               }
             />
           </Route>
-          <Route path="hinterhof/*" element={<Backyard />} />
+          <Route
+            path="hinterhof/*"
+            element={
+              <RequireAuth>
+                <Backyard />
+              </RequireAuth>
+            }
+          />
         </Routes>
       )}
     </>
