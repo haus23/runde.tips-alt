@@ -7,17 +7,21 @@ import {
 } from '@heroicons/react/outline';
 import { Fragment, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { useChampionships } from '~/api/hooks';
 import { AppNavButton, Logo, ThemeToggler } from '~/common/components';
 import BackyardNavLink from './components/BackyardNavLink';
 
 export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
   const openSidebar = () => {
     setSidebarOpen(true);
   };
   const closeSidebar = () => {
     setSidebarOpen(false);
   };
+
+  const { championships } = useChampionships();
 
   return (
     <div className="h-full bg-gray-50 dark:bg-gray-700 dark:text-white">
@@ -129,7 +133,12 @@ export default function Layout() {
           </div>
           <div className="flex-1 px-4 flex justify-between">
             <div className="flex-1 flex items-center">
-              <h2 className="text-xl">Aktuelles Turnier</h2>
+              <h2 className="text-xl">
+                <span className="hidden sm:inline">Aktuelles Turnier: </span>
+                {championships.length > 0
+                  ? championships[0].title
+                  : 'Noch kein Turnier'}
+              </h2>
             </div>
             <div
               className={`ml-4 flex items-center md:ml-6 transition-opacity ${
