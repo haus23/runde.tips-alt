@@ -1,10 +1,11 @@
 import { FormEvent, useState } from 'react';
-import { useAuth } from '~/common/hooks';
+import { useAuth, useDocTitle } from '~/common/hooks';
 import { useNavigate } from 'react-router';
 import { TextField } from '~/common/components/forms';
 import { UserIcon } from '@heroicons/react/outline';
 
 export default function Settings() {
+  useDocTitle('Einstellungen');
   const { user, updateUser } = useAuth();
   const navigate = useNavigate();
   const [displayName, setDisplayName] = useState(user?.name || '');

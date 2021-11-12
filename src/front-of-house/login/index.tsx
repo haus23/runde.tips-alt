@@ -1,9 +1,10 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { TextField } from '~/common/components/forms';
-import { useAuth } from '~/common/hooks';
+import { useAuth, useDocTitle } from '~/common/hooks';
 
 export default function LogIn() {
+  useDocTitle('Log in');
   const navigate = useNavigate();
   const location = useLocation();
   const { authenticated, logIn } = useAuth();
