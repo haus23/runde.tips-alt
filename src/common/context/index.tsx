@@ -1,6 +1,7 @@
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
+import { SplashScreen } from '../components';
 
 type AppProviderProps = {
   children: ReactNode;
@@ -9,7 +10,9 @@ type AppProviderProps = {
 export default function AppProvider({ children }: AppProviderProps) {
   return (
     <RecoilRoot>
-      <BrowserRouter>{children}</BrowserRouter>
+      <Suspense fallback={<SplashScreen />}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </Suspense>
     </RecoilRoot>
   );
 }

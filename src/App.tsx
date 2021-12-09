@@ -9,7 +9,8 @@ import {
 } from '~/front-of-house';
 import Backyard from '~/backyard';
 import { useAuth } from './common/hooks';
-import { SplashScreen } from './common/components';
+import { useRecoilValue } from 'recoil';
+import { authQuery } from './api/state';
 
 function RequireAuth({ children }: { children: JSX.Element }) {
   let { authenticated } = useAuth();
@@ -23,36 +24,31 @@ function RequireAuth({ children }: { children: JSX.Element }) {
 }
 
 export default function App() {
-  let { isAuthenticating } = useAuth();
+  const firebaseUser = useRecoilValue(authQuery);
   return (
-    <>
-      <SplashScreen showWhile={isAuthenticating}></SplashScreen>
-      {!isAuthenticating && (
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Standings />} />
-            <Route path="spieler" element={<Players />} />
-            <Route path="spiele" element={<Matches />} />
-            <Route path="login" element={<LogIn />} />
-            <Route
-              path="einstellungen"
-              element={
-                <RequireAuth>
-                  <Settings />
-                </RequireAuth>
-              }
-            />
-          </Route>
-          <Route
-            path="hinterhof/*"
-            element={
-              <RequireAuth>
-                <Backyard />
-              </RequireAuth>
-            }
-          />
-        </Routes>
-      )}
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Standings />} />
+        <Route path="spieler" element={<Players />} />
+        <Route path="spiele" element={<Matches />} />
+        <Route path="login" element={<LogIn />} />
+        <Route
+          path="einstellungen"
+          element={
+            <RequireAuth>
+              <Settings />
+            </RequireAuth>
+          }
+        />
+      </Route>
+      <Route
+        path="hinterhof/*"
+        element={
+          <RequireAuth>
+            <Backyard />
+          </RequireAuth>
+        }
+      />
+    </Routes>
   );
 }

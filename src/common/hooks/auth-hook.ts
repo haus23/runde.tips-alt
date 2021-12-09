@@ -1,37 +1,22 @@
 import {
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
 } from 'firebase/auth';
 import { useEffect } from 'react';
-import { atom, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { auth as firebaseAuth } from '~/api/firebase';
-
-type UserProfile = {
-  email: string;
-  name: string;
-  imageUrl: string;
-};
-
-const authState = atom<{
-  isAuthenticating: boolean;
-  authenticated: boolean;
-  user: UserProfile | null;
-}>({
-  key: 'auth',
-  default: {
-    isAuthenticating: true,
-    authenticated: false,
-    user: null,
-  },
-});
+import { authState } from '~/api/state';
 
 const useAuth = () => {
   const [auth, setAuth] = useRecoilState(authState);
 
   // Subscribe to firebase auth
   useEffect(() => {
-    firebaseAuth.onAuthStateChanged((user) => {
+    console.log('Subscribing auth in hook');
+    onAuthStateChanged(firebaseAuth, (user) => {
+      console.log('Hook user', user);
       setAuth({
         isAuthenticating: false,
         authenticated: user !== null,
@@ -59,7 +44,13 @@ const useAuth = () => {
     return signOut(firebaseAuth);
   };
 
-  const updateUser = async ({ name, imageUrl }: Omit<UserProfile, 'email'>) => {
+  const updateUser = async ({
+    name,
+    imageUrl,
+  }: {
+    name: string;
+    imageUrl: string;
+  }) => {
     await updateProfile(firebaseAuth.currentUser!, {
       displayName: name,
       photoURL: imageUrl,

@@ -1,16 +1,15 @@
 import { Transition } from '@headlessui/react';
-import React from 'react';
 
 import './SplashScreen.css';
 
-type SplashScreenProps = {
-  showWhile: boolean;
-};
-
-const SplashScreen = ({ showWhile }: SplashScreenProps) => {
+const SplashScreen = () => {
   return (
     <Transition
-      show={showWhile}
+      show={true}
+      appear={true}
+      enter="transition-opacity duration-100"
+      enterFrom="opacity-0"
+      enterTo="opacity-100"
       leave="transition-opacity duration-500"
       leaveFrom="opacity-100"
       leaveTo="opacity-0"
