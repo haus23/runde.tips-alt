@@ -1,8 +1,8 @@
 function App() {
   return (
     <div>
-      <header>
-        <h1>runde.tips</h1>
+      <header className="shadow p-4">
+        <h1 className="text-2xl font-semibold">runde.tips</h1>
       </header>
     </div>
   );
