@@ -1,4 +1,8 @@
+import useAuth from './common/hooks/use-auth';
+
 function App() {
+  const auth = useAuth();
+  console.log(auth);
   return (
     <div>
       <header className="shadow p-4">
