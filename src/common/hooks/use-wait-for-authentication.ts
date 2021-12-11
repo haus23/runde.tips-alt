@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil';
-import authQuery from '../state/auth-query';
+import authQuery from '@/common/state/auth-query';
 
 function useWaitForAuthentication() {
   useRecoilValue(authQuery);

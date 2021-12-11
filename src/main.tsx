@@ -6,7 +6,7 @@ import './styles.css';
 
 // App
 import App from './App';
-import AppRoot from './core/AppRoot';
+import AppRoot from '@/core/AppRoot';
 
 // Render app root
 ReactDOM.render(

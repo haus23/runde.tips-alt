@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
-import auth from '../../api/firebase/auth';
+import auth from '@/api/firebase/auth';
+import authStateAtom from '@/common/state/auth-state';
 
-import authStateAtom from '../state/auth-state';
 import useWaitForAuthentication from './use-wait-for-authentication';
 
 function useAuth() {

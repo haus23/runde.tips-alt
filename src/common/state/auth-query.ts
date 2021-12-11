@@ -1,5 +1,5 @@
 import { selector } from 'recoil';
-import auth from '../../api/firebase/auth';
+import auth from '@/api/firebase/auth';
 
 const authQuery = selector<boolean>({
   key: 'authQuery',
