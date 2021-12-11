@@ -4,5 +4,8 @@ node_modules/
 # Sensible data
 .env.local
 
+# Vite output
+dist/
+
 # Editor/IDE settings
 .idea/
