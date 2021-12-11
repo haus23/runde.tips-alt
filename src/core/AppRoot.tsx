@@ -1,5 +1,6 @@
 import { ReactNode, Suspense } from 'react';
 import { RecoilRoot } from 'recoil';
+import SplashScreen from '@/core/components/SplashScreen';
 
 type AppRootProps = {
   children: ReactNode;
@@ -8,7 +9,7 @@ type AppRootProps = {
 function AppRoot({ children }: AppRootProps) {
   return (
     <RecoilRoot>
-      <Suspense fallback={<div>Loading ...</div>}>{children}</Suspense>
+      <Suspense fallback={<SplashScreen />}>{children}</Suspense>
     </RecoilRoot>
   );
 }
