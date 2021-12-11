@@ -1,20 +1,30 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import authState from '../state/auth-state';
+
+import auth from '../../api/firebase/auth';
+
+import authStateAtom from '../state/auth-state';
+import useWaitForAuthentication from './use-wait-for-authentication';
 
 function useAuth() {
-  const [auth, setAuth] = useRecoilState(authState);
+  useWaitForAuthentication();
+  const [authState, setAuthState] = useRecoilState(authStateAtom);
 
   useEffect(() => {
-    setTimeout(() => {
-      setAuth({
-        isAuthenticating: false,
-        authenticated: true,
-        user: null,
+    return auth.onAuthStateChanged((user) => {
+      setAuthState({
+        authenticated: user !== null,
+        user: user
+          ? {
+              email: user.email!,
+              name: user.displayName || '',
+              imageUrl: user.photoURL || '',
+            }
+          : null,
       });
-    }, 2000);
+    });
   }, []);
-  return auth;
+  return { ...authState };
 }
 
 export default useAuth;

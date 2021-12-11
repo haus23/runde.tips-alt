@@ -7,7 +7,6 @@ type UserProfile = {
 };
 
 type AuthState = {
-  isAuthenticating: boolean;
   authenticated: boolean;
   user: UserProfile | null;
 };
@@ -15,7 +14,6 @@ type AuthState = {
 const authState = atom<AuthState>({
   key: 'authState',
   default: {
-    isAuthenticating: true,
     authenticated: false,
     user: null,
   },

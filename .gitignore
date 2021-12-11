@@ -1,5 +1,8 @@
 # NPM deps
 node_modules/
 
+# Sensible data
+.env.local
+
 # Editor/IDE settings
 .idea/

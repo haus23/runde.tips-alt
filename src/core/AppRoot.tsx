@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 import { RecoilRoot } from 'recoil';
 
 type AppRootProps = {
@@ -6,7 +6,11 @@ type AppRootProps = {
 };
 
 function AppRoot({ children }: AppRootProps) {
-  return <RecoilRoot>{children}</RecoilRoot>;
+  return (
+    <RecoilRoot>
+      <Suspense fallback={<div>Loading ...</div>}>{children}</Suspense>
+    </RecoilRoot>
+  );
 }
 
 export default AppRoot;
