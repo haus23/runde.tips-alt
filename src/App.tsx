@@ -1,14 +1,17 @@
-import useAuth from '@/common/hooks/use-auth';
+import { Route, Routes } from 'react-router-dom';
+
+import Layout from '@/front-of-house/Layout';
+import Standings from '@/front-of-house/views/Standings';
+import LogIn from '@/front-of-house/views/LogIn';
 
 function App() {
-  const auth = useAuth();
-  console.log(auth);
   return (
-    <div>
-      <header className="shadow p-4">
-        <h1 className="text-2xl font-semibold">runde.tips</h1>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Standings />} />
+        <Route path="login" element={<LogIn />} />;
+      </Route>
+    </Routes>
   );
 }
 
