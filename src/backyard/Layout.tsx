@@ -1,9 +1,6 @@
 import { Link, NavLink, Outlet } from 'react-router-dom';
-import useAuth from '@/common/hooks/use-auth';
 
 export default () => {
-  const { authenticated } = useAuth();
-
   return (
     <div>
       <header className="shadow p-4 flex items-center gap-4">
@@ -13,12 +10,7 @@ export default () => {
           </Link>
         </div>
         <nav className="flex items-center gap-4">
-          <NavLink to="/">Tabelle</NavLink>
-          {authenticated ? (
-            <NavLink to="/hinterhof">Hinterhof</NavLink>
-          ) : (
-            <NavLink to="/login">Log In</NavLink>
-          )}
+          <NavLink to=".">Dashboard</NavLink>
         </nav>
       </header>
       <main className="container mt-4 mx-auto">
