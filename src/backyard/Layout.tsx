@@ -11,6 +11,7 @@ const Layout = () => {
         </div>
         <nav className="flex items-center gap-4">
           <NavLink to=".">Dashboard</NavLink>
+          <NavLink to="spiele">Spiele</NavLink>
         </nav>
       </header>
       <main className="container mt-4 mx-auto">
