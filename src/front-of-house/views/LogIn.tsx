@@ -1,5 +1,21 @@
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import auth from '@/api/firebase/auth';
+
 const LogIn = () => {
-  return <h2 className="text-xl font-semibold">Log In</h2>;
+  const logIn = async () => {
+    await signInWithEmailAndPassword(
+      auth,
+      'micha@somewhere.com',
+      'yourSecretHere'
+    );
+  };
+
+  return (
+    <div>
+      <h2 className="text-xl font-semibold">Log In</h2>
+      <button onClick={logIn}>Log In</button>
+    </div>
+  );
 };
 
 export default LogIn;
