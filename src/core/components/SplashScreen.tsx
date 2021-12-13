@@ -1,6 +1,6 @@
 import { Transition } from '@headlessui/react';
 
-export default () => {
+const SplashScreen = () => {
   return (
     <Transition
       show={true}
@@ -48,3 +48,5 @@ export default () => {
     </Transition>
   );
 };
+
+export default SplashScreen;

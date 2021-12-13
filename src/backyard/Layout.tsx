@@ -1,6 +1,6 @@
 import { Link, NavLink, Outlet } from 'react-router-dom';
 
-export default () => {
+const Layout = () => {
   return (
     <div>
       <header className="shadow p-4 flex items-center gap-4">
@@ -19,3 +19,5 @@ export default () => {
     </div>
   );
 };
+
+export default Layout;

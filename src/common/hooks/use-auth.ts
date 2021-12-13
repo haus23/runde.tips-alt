@@ -16,14 +16,15 @@ function useAuth() {
         authenticated: user !== null,
         user: user
           ? {
-              email: user.email!,
+              email: user.email as string,
               name: user.displayName || '',
               imageUrl: user.photoURL || '',
             }
           : null,
       });
     });
-  }, []);
+  }, [setAuthState]);
+
   return { ...authState };
 }
 

@@ -7,9 +7,9 @@ type Props = {
   children: ReactNode;
 };
 
-export default ({ children }: Props) => {
-  let { authenticated } = useAuth();
-  let location = useLocation();
+const RequireAuth = ({ children }: Props) => {
+  const { authenticated } = useAuth();
+  const location = useLocation();
 
   if (!authenticated) {
     return <Navigate to="/login" state={{ from: location }} />;
@@ -17,3 +17,5 @@ export default ({ children }: Props) => {
 
   return <>{children}</>;
 };
+
+export default RequireAuth;

@@ -1,7 +1,7 @@
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import useAuth from '@/common/hooks/use-auth';
 
-export default () => {
+const Layout = () => {
   const { authenticated } = useAuth();
 
   return (
@@ -27,3 +27,5 @@ export default () => {
     </div>
   );
 };
+
+export default Layout;
