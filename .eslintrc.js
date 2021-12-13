@@ -18,7 +18,12 @@ module.exports = {
     },
     sourceType: 'module',
   },
-  rules: {},
+  rules: {
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { ignoreRestSiblings: true },
+    ],
+  },
   settings: {
     react: {
       version: 'detect',
