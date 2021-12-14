@@ -6,7 +6,8 @@ import Standings from '@/front-of-house/views/Standings';
 import LogIn from '@/front-of-house/views/LogIn';
 import RequireAuth from '@/common/components/router/RequireAuth';
 
-const BackyardApp = lazy(() => import('./BackyardApp'));
+const backyardAppPromise = import('./BackyardApp');
+const BackyardApp = lazy(() => backyardAppPromise);
 
 function App() {
   return (
