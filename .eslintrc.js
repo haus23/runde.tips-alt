@@ -10,6 +10,7 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:storybook/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -19,9 +20,12 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'react/prop-types': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
-      { ignoreRestSiblings: true },
+      {
+        ignoreRestSiblings: true,
+      },
     ],
   },
   settings: {
