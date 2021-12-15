@@ -1,5 +1,5 @@
 import useTeams from '@/api/hooks/use-teams';
-import AutocompleteCombobox from '@/common/components/form/autocomplete-combobox';
+import AutocompleteCombobox from '@/common/components/form/AutocompleteCombobox';
 import Team from '@/api/model/Team';
 
 function Matches() {
