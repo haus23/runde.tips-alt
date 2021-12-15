@@ -5,9 +5,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint ./src --ext .ts,.tsx",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "lint": "eslint ./src --ext .ts,.tsx"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.2",
@@ -21,23 +19,15 @@
     "recoil": "^0.5.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.5",
-    "@storybook/addon-actions": "^6.4.9",
-    "@storybook/addon-essentials": "^6.4.9",
-    "@storybook/addon-links": "^6.4.9",
-    "@storybook/addon-postcss": "^2.0.0",
-    "@storybook/react": "^6.4.9",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
     "@vitejs/plugin-react": "^1.0.7",
     "autoprefixer": "^10.4.0",
-    "babel-loader": "^8.2.3",
     "eslint": "^8.4.1",
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "eslint-plugin-storybook": "^0.5.3",
     "postcss": "^8.4.4",
     "prettier": "^2.5.1",
     "tailwindcss": "^3.0.0",
