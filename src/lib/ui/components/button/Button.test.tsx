@@ -1,6 +1,7 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { Button } from '@/ui-lib/components/Button';
 import { createRef } from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
+
+import { Button } from '@/lib/ui/components/button/Button';
 
 describe('Button', () => {
   test('renders', () => {
@@ -30,5 +31,9 @@ describe('Button', () => {
     render(<Button ref={ref} />);
 
     expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+  });
+
+  test('has a primary variant flag', () => {
+    render(<Button primary />);
   });
 });
