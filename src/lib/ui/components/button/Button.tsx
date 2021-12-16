@@ -10,6 +10,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, primary = false, ...props }: ButtonProps, ref) => (
     <button
       ref={ref}
+      type="button"
       {...props}
       className={classNames(
         'inline-flex items-center px-4 py-2 border font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2',

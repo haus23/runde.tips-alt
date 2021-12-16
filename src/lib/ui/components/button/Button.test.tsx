@@ -36,4 +36,9 @@ describe('Button', () => {
   test('has a primary variant flag', () => {
     render(<Button primary />);
   });
+
+  test('has default type "button"', () => {
+    render(<Button />);
+    expect(screen.getByText<HTMLButtonElement>('Button').type).toBe('button');
+  });
 });
