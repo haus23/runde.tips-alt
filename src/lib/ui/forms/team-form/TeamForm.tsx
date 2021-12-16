@@ -30,10 +30,12 @@ export const TeamForm = ({ onSave, onCancel, validateId }: TeamFormProps) => {
               required: 'Pflichtfeld',
               minLength: { value: 3, message: 'Mindestens drei Zeichen!' },
               validate: (id) => validateId(id) || 'Kennung schon vergeben!',
+              onChange: (ev) =>
+                (ev.target.value = ev.target.value.toLowerCase()),
             })}
             className="sm:col-span-2"
             label="Schlüssel/ID"
-            placeholder="Eindeutige Kennung"
+            placeholder="Eindeutige Kennung (Kleinbuchstaben)"
             errorMsg={errors.id?.message}
           />
           <TextField
