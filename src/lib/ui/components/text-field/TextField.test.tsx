@@ -41,6 +41,13 @@ describe('TextField', () => {
   test('has errorMsg property', () => {
     const error = 'Deutsche Postleitzahl mit 5 Ziffern';
     render(<TextField label="PLZ" errorMsg={error} />);
-    screen.getByText(error);
+    expect(screen.getByTestId('errorMsg')).toHaveTextContent(error);
+    expect(screen.getByTestId('errorIcon')).toBeInTheDocument();
+  });
+
+  test('shows no error for emtpy message but symbol', () => {
+    render(<TextField label="PLZ" errorMsg={''} />);
+    expect(screen.queryByTestId('errorMsg')).not.toBeInTheDocument();
+    expect(screen.getByTestId('errorIcon')).toBeInTheDocument();
   });
 });
