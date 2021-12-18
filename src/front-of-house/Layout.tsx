@@ -1,5 +1,6 @@
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import useAuth from '@/common/hooks/use-auth';
+import { Brand } from '@/lib/ui/layout/brand/Brand';
 
 const Layout = () => {
   const { authenticated } = useAuth();
@@ -7,6 +8,7 @@ const Layout = () => {
   return (
     <div>
       <header className="shadow p-4 flex items-center gap-4">
+        <Brand />
         <div>
           <Link to="/">
             <h1 className="text-2xl font-semibold">runde.tips</h1>
@@ -21,9 +23,7 @@ const Layout = () => {
           )}
         </nav>
       </header>
-      <main className="container mt-4 mx-auto">
-        <Outlet />
-      </main>
+      <Outlet />
     </div>
   );
 };

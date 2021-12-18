@@ -1,5 +1,11 @@
+import { ViewContainer } from '@/lib/ui/layout/view-container/ViewContainer';
+
 const Standings = () => {
-  return <h2 className="text-xl font-semibold">Aktuelle Tabelle</h2>;
+  return (
+    <ViewContainer title="Aktuelle Tabelle">
+      <table></table>
+    </ViewContainer>
+  );
 };
 
 export default Standings;

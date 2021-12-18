@@ -5,6 +5,8 @@ import useAuth from '@/common/hooks/use-auth';
 
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import auth from '@/api/firebase/auth';
+import { ViewContainer } from '@/lib/ui/layout/view-container/ViewContainer';
+import { Button } from '@/lib/ui/components/button/Button';
 
 const LogIn = () => {
   const location = useLocation();
@@ -28,10 +30,11 @@ const LogIn = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-xl font-semibold">Log In</h2>
-      <button onClick={logIn}>Log In</button>
-    </div>
+    <ViewContainer title="Anmeldung">
+      <Button primary onClick={logIn}>
+        Log In
+      </Button>
+    </ViewContainer>
   );
 };
 
