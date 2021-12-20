@@ -7,6 +7,7 @@ import LogIn from '@/front-of-house/views/LogIn';
 import RequireAuth from '@/common/components/router/RequireAuth';
 import Matches from '@/front-of-house/views/Matches';
 import Players from '@/front-of-house/views/Players';
+import Settings from '@/front-of-house/views/Settings';
 
 const backyardAppPromise = import('./BackyardApp');
 const BackyardApp = lazy(() => backyardAppPromise);
@@ -19,6 +20,15 @@ function App() {
         <Route path="spieler" element={<Matches />} />;
         <Route path="spiele" element={<Players />} />;
         <Route path="login" element={<LogIn />} />;
+        <Route
+          path="einstellungen"
+          element={
+            <RequireAuth>
+              <Settings />
+            </RequireAuth>
+          }
+        />
+        ;
       </Route>
       <Route
         path="hinterhof/*"

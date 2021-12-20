@@ -2,6 +2,7 @@ import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import UserProfile from '@/model/UserProfile';
+import { TopnavProfileMenuItem } from '@/front-of-house/components/navbar/topnav-profile-menu-item/TopnavProfileMenuItem';
 
 export type TopnavProfileProps = {
   user: UserProfile;
@@ -23,27 +24,11 @@ export const TopnavProfile = ({ user }: TopnavProfileProps) => (
       leaveTo="transform opacity-0 scale-95"
     >
       <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-        <Menu.Item
-          as={NavLink}
-          to="/hinterhof"
-          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-        >
-          Hinterhof
-        </Menu.Item>
-        <Menu.Item
-          as={NavLink}
-          to="/einstellungen"
-          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-        >
+        <TopnavProfileMenuItem to="/hinterhof">Hinterhof</TopnavProfileMenuItem>
+        <TopnavProfileMenuItem to="/einstellungen">
           Einstellungen
-        </Menu.Item>
-        <Menu.Item
-          as={NavLink}
-          to="/logout"
-          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-        >
-          Log out
-        </Menu.Item>
+        </TopnavProfileMenuItem>
+        <TopnavProfileMenuItem to="/logout">Logout</TopnavProfileMenuItem>
       </Menu.Items>
     </Transition>
   </Menu>
