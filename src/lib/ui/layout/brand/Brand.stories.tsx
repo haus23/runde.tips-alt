@@ -5,7 +5,13 @@ import { Brand } from './Brand';
 export default {
   title: 'Layout/Brand',
   component: Brand,
-  decorators: [(Story) => <MemoryRouter initialEntries={['/']}><Story /></MemoryRouter>],
+  decorators: [
+    (Story) => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
 } as ComponentMeta<typeof Brand>;
 
 const Template: ComponentStory<typeof Brand> = ({ ...args }) => (

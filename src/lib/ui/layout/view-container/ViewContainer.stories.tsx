@@ -6,7 +6,7 @@ export default {
   component: ViewContainer,
   decorators: [
     (Story) => (
-      <div className="h-screen bg-gray-100">
+      <div className="h-screen">
         <Story />
       </div>
     ),

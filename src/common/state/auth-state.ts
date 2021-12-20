@@ -1,10 +1,5 @@
 import { atom } from 'recoil';
-
-type UserProfile = {
-  email: string;
-  name: string;
-  imageUrl: string;
-};
+import UserProfile from '@/model/UserProfile';
 
 type AuthState = {
   authenticated: boolean;
