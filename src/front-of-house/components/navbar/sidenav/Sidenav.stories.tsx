@@ -1,24 +1,24 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
-import { Navbar } from './Navbar';
+import { Sidenav } from './Sidenav';
 
 export default {
-  title: 'FOH/Navbar',
-  component: Navbar,
-  parameters: {
-    layout: 'fullscreen',
-  },
+  title: 'FOH/Sidenav',
+  component: Sidenav,
   decorators: [
     (Story) => (
       <MemoryRouter>
-        <Story />
+        <div className="">
+          <Story />
+        </div>
       </MemoryRouter>
     ),
   ],
-} as ComponentMeta<typeof Navbar>;
+  argTypes: { onClose: { action: 'closed' } },
+} as ComponentMeta<typeof Sidenav>;
 
-const Template: ComponentStory<typeof Navbar> = ({ ...args }) => (
-  <Navbar {...args} />
+const Template: ComponentStory<typeof Sidenav> = ({ ...args }) => (
+  <Sidenav {...args} />
 );
 
 export const Default = Template.bind({});
@@ -28,6 +28,7 @@ Default.args = {
 
 export const Authenticated = Template.bind({});
 Authenticated.args = {
+  ...Default.args,
   user: {
     name: 'Micha',
     email: 'micha@haus23.net',

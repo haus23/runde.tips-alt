@@ -11,7 +11,7 @@ export const TopnavLink = forwardRef<HTMLAnchorElement, TopnavLinkProps>(
       {...props}
       className={({ isActive }) =>
         classNames(
-          'inline-flex items-center px-2 pt-1 border-b-2 text font-medium',
+          'inline-flex items-center px-2 pt-1 border-b-2 text-base font-medium',
           isActive
             ? 'border-indigo-500 text-gray-900'
             : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-400'

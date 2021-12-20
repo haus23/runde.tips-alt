@@ -1,6 +1,6 @@
 import { Brand } from '@/lib/ui/layout/brand/Brand';
 import { TopnavLink } from '../topnav-link/TopnavLink';
-import { TopnavProfile } from '@/front-of-house/components/navbar/topnav-user/TopnavProfile';
+import { TopnavProfile } from '@/front-of-house/components/navbar/topnav-profile/TopnavProfile';
 import UserProfile from '@/model/UserProfile';
 
 export type TopnavProps = {

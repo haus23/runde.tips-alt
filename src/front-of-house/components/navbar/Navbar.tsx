@@ -2,6 +2,7 @@ import { Disclosure } from '@headlessui/react';
 import { Topnav } from '@/front-of-house/components/navbar/topnav/Topnav';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import UserProfile from '@/model/UserProfile';
+import { Sidenav } from '@/front-of-house/components/navbar/sidenav/Sidenav';
 
 export type NavbarProps = {
   user: UserProfile | null;
@@ -29,6 +30,9 @@ export const Navbar = ({ user }: NavbarProps) => {
                 </Disclosure.Button>
               </div>
             </div>
+            <Disclosure.Panel className="sm:hidden">
+              <Sidenav user={user} onClose={close} />
+            </Disclosure.Panel>
           </>
         )}
       </Disclosure>
