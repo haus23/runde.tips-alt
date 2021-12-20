@@ -1,5 +1,5 @@
 import { Disclosure } from '@headlessui/react';
-import { Topnav } from '@/front-of-house/components/topnav/Topnav';
+import { Topnav } from '@/front-of-house/components/navbar/topnav/Topnav';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import UserProfile from '@/model/UserProfile';
 
