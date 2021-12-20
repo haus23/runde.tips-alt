@@ -36,6 +36,7 @@ function Matches() {
         <TeamForm
           onSave={() => setTeamDialogOpen(false)}
           onCancel={() => setTeamDialogOpen(false)}
+          validateId={(id) => !teams.some((t) => t.id === id)}
         />
       </ModalDialog>
     </div>

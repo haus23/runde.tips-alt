@@ -14,11 +14,6 @@ export default {
   ],
 } as ComponentMeta<typeof Brand>;
 
-const Template: ComponentStory<typeof Brand> = ({ ...args }) => (
-  <Brand {...args} />
-);
+const Template: ComponentStory<typeof Brand> = () => <Brand />;
 
 export const Default = Template.bind({});
-Default.args = {
-  className: '',
-};

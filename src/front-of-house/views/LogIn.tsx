@@ -13,7 +13,8 @@ const LogIn = () => {
   const navigate = useNavigate();
   const { authenticated } = useAuth();
 
-  const from = location.state?.from?.pathname || '/';
+  const state = location.state as { from: string };
+  const from = state?.from || '/';
 
   useEffect(() => {
     if (authenticated) {
