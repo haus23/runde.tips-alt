@@ -1,13 +1,22 @@
 import { useEffect } from 'react';
-import { atom, useRecoilState, useRecoilValue } from 'recoil';
+import { atom, useRecoilState } from 'recoil';
 
 const darkModeDisabledState = atom({
   key: 'modeSwitch',
   default: false,
 });
 
+const darkModeState = atom({
+  key: 'darkMode',
+  default: false,
+});
+
+const themeState = atom({
+  key: 'theme',
+  default: localStorage.getItem('theme') ?? 'system',
+});
+
 const setColorTheme = (theme: string) => {
-  console.log(theme);
   if (theme === 'dark') {
     document.documentElement.classList.add('dark');
   } else {
@@ -21,6 +30,8 @@ const setColorTheme = (theme: string) => {
  */
 function useDarkMode(enable?: boolean) {
   const [disabled, setDisabled] = useRecoilState(darkModeDisabledState);
+  const [darkMode, setDarkMode] = useRecoilState(darkModeState);
+  const [theme, setTheme] = useRecoilState(themeState);
 
   useEffect(() => {
     if (typeof enable !== 'undefined') {
@@ -29,18 +40,27 @@ function useDarkMode(enable?: boolean) {
   }, []);
 
   useEffect(() => {
+    if (disabled) {
+      setColorTheme('light');
+      return;
+    }
+
     const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    console.log(disabled);
-    const systemTheme = !disabled && darkModeQuery.matches ? 'dark' : 'light';
-    setColorTheme(systemTheme);
+    const currentDarkMode =
+      theme === 'system' ? darkModeQuery.matches : theme === 'dark';
+    const currentTheme = currentDarkMode ? 'dark' : 'light';
+    setDarkMode(currentDarkMode);
+
+    setColorTheme(currentTheme);
 
     return darkModeQuery.addEventListener('change', (ev) => {
       const systemTheme = !disabled && ev.matches ? 'dark' : 'light';
       setColorTheme(systemTheme);
+      setTheme('system');
     });
   }, [disabled]);
 
-  return { disabled };
+  return { disabled, darkMode, theme };
 }
 
 export default useDarkMode;
