@@ -54,8 +54,9 @@ function useDarkMode(enable?: boolean) {
     setColorTheme(currentTheme);
 
     return darkModeQuery.addEventListener('change', (ev) => {
-      const systemTheme = !disabled && ev.matches ? 'dark' : 'light';
-      setColorTheme(systemTheme);
+      if (disabled) return;
+      setDarkMode(ev.matches);
+      setColorTheme(ev.matches ? 'dark' : 'light');
       setTheme('system');
     });
   }, [disabled]);
