@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { TextField } from '@/lib/ui/components/text-field/TextField';
+import { TextField } from '@/lib/ui/atoms/text-field/TextField';
 import { createRef } from 'react';
 
 describe('TextField', () => {

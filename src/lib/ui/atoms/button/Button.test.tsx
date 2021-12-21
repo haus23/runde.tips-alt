@@ -1,7 +1,7 @@
 import { createRef } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import { Button } from '@/lib/ui/components/button/Button';
+import { Button } from '@/lib/ui/atoms/button/Button';
 
 describe('Button', () => {
   test('renders', () => {

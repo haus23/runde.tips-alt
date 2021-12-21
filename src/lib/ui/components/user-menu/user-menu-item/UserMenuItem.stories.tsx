@@ -1,11 +1,11 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
 import { Menu } from '@headlessui/react';
-import { TopnavProfileMenuItem } from './TopnavProfileMenuItem';
+import { UserMenuItem } from './UserMenuItem';
 
 export default {
-  title: 'FOH/TopnavProfileMenuItem',
-  component: TopnavProfileMenuItem,
+  title: 'FOH/UserMenuItem',
+  component: UserMenuItem,
   decorators: [
     (Story) => (
       <MemoryRouter>
@@ -15,11 +15,11 @@ export default {
       </MemoryRouter>
     ),
   ],
-} as ComponentMeta<typeof TopnavProfileMenuItem>;
+} as ComponentMeta<typeof UserMenuItem>;
 
-const Template: ComponentStory<typeof TopnavProfileMenuItem> = ({
-  ...args
-}) => <TopnavProfileMenuItem {...args} />;
+const Template: ComponentStory<typeof UserMenuItem> = ({ ...args }) => (
+  <UserMenuItem {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {

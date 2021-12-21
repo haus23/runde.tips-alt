@@ -1,7 +1,7 @@
 import useTeams from '@/api/hooks/use-teams';
 import AutocompleteCombobox from '@/common/components/form/AutocompleteCombobox';
 import Team from '@/api/model/Team';
-import { Button } from '@/lib/ui/components/button/Button';
+import { Button } from '@/lib/ui/atoms/button/Button';
 import { useState } from 'react';
 import { ModalDialog } from '@/lib/ui/components/modal-dialog/ModalDialog';
 import { TeamForm } from '@/lib/ui/forms/team-form/TeamForm';

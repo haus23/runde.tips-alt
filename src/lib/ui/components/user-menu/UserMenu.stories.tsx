@@ -1,10 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
-import { TopnavProfile } from './TopnavProfile';
+import { UserMenu } from './UserMenu';
 
 export default {
-  title: 'FOH/TopnavProfile',
-  component: TopnavProfile,
+  title: 'FOH/UserMenu',
+  component: UserMenu,
   decorators: [
     (Story) => (
       <MemoryRouter>
@@ -14,10 +14,10 @@ export default {
       </MemoryRouter>
     ),
   ],
-} as ComponentMeta<typeof TopnavProfile>;
+} as ComponentMeta<typeof UserMenu>;
 
-const Template: ComponentStory<typeof TopnavProfile> = ({ ...args }) => (
-  <TopnavProfile {...args} />
+const Template: ComponentStory<typeof UserMenu> = ({ ...args }) => (
+  <UserMenu {...args} />
 );
 
 export const Default = Template.bind({});

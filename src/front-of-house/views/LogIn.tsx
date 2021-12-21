@@ -6,7 +6,7 @@ import useAuth from '@/common/hooks/use-auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import auth from '@/api/firebase/auth';
 import { ViewContainer } from '@/lib/ui/layout/view-container/ViewContainer';
-import { Button } from '@/lib/ui/components/button/Button';
+import { Button } from '@/lib/ui/atoms/button/Button';
 
 const LogIn = () => {
   const location = useLocation();

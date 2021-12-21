@@ -2,13 +2,9 @@ import { Menu } from '@headlessui/react';
 import { NavLink, NavLinkProps } from 'react-router-dom';
 import classNames from '@/common/lib/class-names';
 
-export type TopnavProfileMenuItemProps = NavLinkProps;
+export type UserMenuItemProps = NavLinkProps;
 
-export const TopnavProfileMenuItem = ({
-  to,
-  children,
-  ...props
-}: TopnavProfileMenuItemProps) => (
+export const UserMenuItem = ({ to, children, ...props }: UserMenuItemProps) => (
   <Menu.Item>
     {({ active }) => (
       <NavLink

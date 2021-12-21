@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import Team from '@/api/model/Team';
-import { TextField } from '../../components/text-field/TextField';
-import { Button } from '../../components/button/Button';
+import { TextField } from '../../atoms/text-field/TextField';
+import { Button } from '../../atoms/button/Button';
 
 export type TeamFormProps = {
   onSave: (team: Team) => void;

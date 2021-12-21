@@ -1,6 +1,6 @@
 import { Brand } from '@/lib/ui/layout/brand/Brand';
 import { TopnavLink } from '../topnav-link/TopnavLink';
-import { TopnavProfile } from '@/front-of-house/components/navbar/topnav-profile/TopnavProfile';
+import { UserMenu } from '@/lib/ui/components/user-menu/UserMenu';
 import UserProfile from '@/model/UserProfile';
 
 export type TopnavProps = {
@@ -24,7 +24,7 @@ export const Topnav = ({ user }: TopnavProps) => {
             <TopnavLink to="/login">Log In</TopnavLink>
           </div>
         ) : (
-          <TopnavProfile user={user} />
+          <UserMenu user={user} />
         )}
       </div>
     </>

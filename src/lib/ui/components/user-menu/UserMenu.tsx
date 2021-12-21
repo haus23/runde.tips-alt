@@ -1,14 +1,15 @@
-import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
-import { NavLink } from 'react-router-dom';
-import UserProfile from '@/model/UserProfile';
-import { TopnavProfileMenuItem } from '@/front-of-house/components/navbar/topnav-profile-menu-item/TopnavProfileMenuItem';
+import { Menu, Transition } from '@headlessui/react';
 
-export type TopnavProfileProps = {
+import { UserMenuItem } from '@/lib/ui/components/user-menu/user-menu-item/UserMenuItem';
+
+import UserProfile from '@/model/UserProfile';
+
+export type UserMenuProps = {
   user: UserProfile;
 };
 
-export const TopnavProfile = ({ user }: TopnavProfileProps) => (
+export const UserMenu = ({ user }: UserMenuProps) => (
   <Menu as="div" className="ml-3 relative">
     <Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       <span className="sr-only">Open user menu</span>
@@ -24,11 +25,9 @@ export const TopnavProfile = ({ user }: TopnavProfileProps) => (
       leaveTo="transform opacity-0 scale-95"
     >
       <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-        <TopnavProfileMenuItem to="/hinterhof">Hinterhof</TopnavProfileMenuItem>
-        <TopnavProfileMenuItem to="/einstellungen">
-          Einstellungen
-        </TopnavProfileMenuItem>
-        <TopnavProfileMenuItem to="/logout">Logout</TopnavProfileMenuItem>
+        <UserMenuItem to="/hinterhof">Hinterhof</UserMenuItem>
+        <UserMenuItem to="/einstellungen">Einstellungen</UserMenuItem>
+        <UserMenuItem to="/logout">Logout</UserMenuItem>
       </Menu.Items>
     </Transition>
   </Menu>
