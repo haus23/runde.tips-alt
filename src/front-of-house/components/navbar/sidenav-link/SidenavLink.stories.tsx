@@ -14,9 +14,10 @@ export default {
   ],
 } as ComponentMeta<typeof SidenavLink>;
 
-const Template: ComponentStory<typeof SidenavLink> = ({ ...args }) => (
-  <SidenavLink {...args} />
-);
+const Template: ComponentStory<typeof SidenavLink> = ({
+  children,
+  ...args
+}) => <SidenavLink {...args}>{children}</SidenavLink>;
 
 export const Default = Template.bind({});
 Default.args = {
