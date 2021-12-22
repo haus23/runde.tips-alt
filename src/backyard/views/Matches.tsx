@@ -7,7 +7,8 @@ import { ModalDialog } from '@/lib/ui/components/modal-dialog/ModalDialog';
 import { TeamForm } from '@/lib/ui/forms/team-form/TeamForm';
 
 function Matches() {
-  const { teams } = useTeams();
+  const { teams, add } = useTeams();
+  const [teamDialogOpen, setTeamDialogOpen] = useState(false);
 
   const filterFn = (t: Team, search: string | undefined) => {
     return `${t.name} ${t.shortName}`
@@ -15,7 +16,9 @@ function Matches() {
       .includes(search?.toLowerCase() || '');
   };
 
-  const [teamDialogOpen, setTeamDialogOpen] = useState(false);
+  const handleSave = async (team: Team) => {
+    await add(team);
+  };
 
   return (
     <div>
@@ -34,7 +37,10 @@ function Matches() {
         onClose={() => setTeamDialogOpen(false)}
       >
         <TeamForm
-          onSave={() => setTeamDialogOpen(false)}
+          onSave={async (team) => {
+            setTeamDialogOpen(false);
+            await handleSave(team);
+          }}
           onCancel={() => setTeamDialogOpen(false)}
           validateId={(id) => !teams.some((t) => t.id === id)}
         />

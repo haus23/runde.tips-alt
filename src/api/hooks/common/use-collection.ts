@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { collection, onSnapshot, query } from 'firebase/firestore';
+import { collection, doc, onSnapshot, query, setDoc } from 'firebase/firestore';
 
 import db from '@/api/firebase/db';
 
@@ -14,12 +14,18 @@ const useCollection = <T extends FirestoreDoc>(path: string) => {
     []
   );
 
+  const add = async (entity: T) => {
+    const ref = doc(db, path, entity.id!).withConverter(converter<T>());
+    await setDoc(ref, entity);
+  };
+
   useEffect(() => {
-    onSnapshot(q, (qs) => setData(qs.docs.map((doc) => doc.data())));
+    return onSnapshot(q, (qs) => setData(qs.docs.map((doc) => doc.data())));
   }, [setData, q]);
 
   return {
     data,
+    add,
   };
 };
 
