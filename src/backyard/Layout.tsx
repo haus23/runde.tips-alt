@@ -16,13 +16,12 @@ const Layout = () => {
           <Sidebar />
           <main className="md:pl-64">
             <div className="flex flex-col ">
-              <div className="sticky top-0 z-10 flex-shrink-0 h-16 px-4 border-b border-gray-200 dark:border-gray-700 flex">
+              <div className="sticky top-0 z-10 flex-shrink-0 h-16 px-4 border-b bg-white dark:bg-transparent border-gray-200 dark:border-gray-700 flex">
                 <div className="grow flex items-center">
                   <h2 className="text-xl">Aktuelles Turnier</h2>
                 </div>
                 <div className="shrink-0 flex items-center">
                   <ThemeSwitch />
-                  <UserMenu user={user} />
                 </div>
               </div>
               <main className="flex-1 max-w-4xl px-4 md:px-8 py-4">
