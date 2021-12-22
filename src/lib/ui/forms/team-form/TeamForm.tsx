@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import Team from '@/api/model/Team';
+import Team from '@/api/model/team';
 import { TextField } from '../../atoms/text-field/TextField';
 import { Button } from '../../atoms/button/Button';
 
