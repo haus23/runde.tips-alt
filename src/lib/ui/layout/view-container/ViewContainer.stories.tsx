@@ -26,3 +26,20 @@ Default.args = {
     nisi non odio officiis pariatur ratione, repudiandae sit temporibus
     tenetur voluptatem!`,
 };
+
+export const DarkDefault = Template.bind({});
+DarkDefault.args = {
+  ...Default.args,
+};
+DarkDefault.decorators = [
+  (Story) => (
+    <div className="dark">
+      <Story />
+    </div>
+  ),
+];
+DarkDefault.parameters = {
+  backgrounds: {
+    default: 'dark',
+  },
+};

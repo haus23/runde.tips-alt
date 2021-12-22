@@ -13,7 +13,7 @@ const Layout = () => {
     <>
       {user && (
         <div className="bg-gray-100 dark:bg-gray-900 dark:text-gray-50 h-screen">
-          <Sidebar />
+          <Sidebar user={user} />
           <main className="md:pl-64">
             <div className="flex flex-col ">
               <div className="sticky top-0 z-10 flex-shrink-0 h-16 px-4 border-b bg-white dark:bg-transparent border-gray-200 dark:border-gray-700 flex">

@@ -27,6 +27,16 @@ export default {
   },
 } as ComponentMeta<typeof Sidebar>;
 
-const Template: ComponentStory<typeof Sidebar> = () => <Sidebar />;
+const Template: ComponentStory<typeof Sidebar> = ({ ...args }) => (
+  <Sidebar {...args} />
+);
 
 export const Default = Template.bind({});
+Default.args = {
+  user: {
+    name: 'Micha',
+    email: 'micha@haus23.net',
+    imageUrl:
+      'https://www.gravatar.com/avatar/dd4a6ddb3c164ad80cb61afb22bc4075',
+  },
+};

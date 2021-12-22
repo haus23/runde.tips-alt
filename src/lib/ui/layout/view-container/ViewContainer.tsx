@@ -10,7 +10,7 @@ export const ViewContainer = ({ title, children }: ViewContainerProps) => {
     <>
       <header className="mt-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="py-4 text-2xl font-semibold text-gray-900 border-b border-gray-200">
+          <h1 className="py-4 text-2xl font-semibold text-gray-900 dark:text-gray-100 border-b border-gray-200 dark:border-gray-700">
             {title}
           </h1>
         </div>
